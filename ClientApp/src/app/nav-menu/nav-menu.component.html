@@ -1,24 +1,19 @@
 <header>
-  <nav class='navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3'>
-    <div class="container">
-      <a class="navbar-brand" [routerLink]='["/"]'>BetterOwner</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-label="Toggle navigation"
-        [attr.aria-expanded]="isExpanded" (click)="toggle()">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse" [ngClass]='{"show": isExpanded}'>
-        <ul class="navbar-nav flex-grow">
-          <li class="nav-item" [routerLinkActive]='["link-active"]' [routerLinkActiveOptions]='{ exact: true }'>
-            <a class="nav-link text-dark" [routerLink]='["/"]'>Home</a>
-          </li>
-          <li class="nav-item" [routerLinkActive]='["link-active"]'>
-            <a class="nav-link text-dark" [routerLink]='["/counter"]'>Counter</a>
-          </li>
-          <li class="nav-item" [routerLinkActive]='["link-active"]'>
-            <a class="nav-link text-dark" [routerLink]='["/fetch-data"]'>Fetch data</a>
-          </li>
-        </ul>
+  <nav fxLayout="row" fxLayoutAlign="space-between center">
+    <div fxLayout="row" fxLayoutGap="1rem" fxLayoutAlign="start center">
+      <div fxLayout="row" fxLayoutAlign="start center">
+        <a [routerLink]='["/"]'>BetterOwner</a>
+        <button type="button" (click)="toggle()">
+          <mat-icon>view_headline</mat-icon>
+        </button>
       </div>
+
+      <a [routerLinkActive]='["link-active"]' [routerLinkActiveOptions]='{ exact: true }' [routerLink]='["/"]'>Home</a>
+      <a [routerLinkActive]='["link-active"]' [routerLink]='["/counter"]'>Counter</a>
+      <a [routerLinkActive]='["link-active"]' [routerLink]='["/fetch-data"]'>Fetch data</a>
+    </div>
+    <div fxLayout="row">
+      <a [routerLinkActive]='["link-active"]' [routerLink]='["/login"]'>登录</a>
     </div>
   </nav>
 </header>
