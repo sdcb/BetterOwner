@@ -1,0 +1,25 @@
+<header>
+  <mat-toolbar color="primary">
+    <mat-toolbar-row fxLayout="row" fxLayoutAlign="space-between center">
+      <!-- left content -->
+      <div fxLayout="row" fxLayoutGap="1rem" fxLayoutAlign="start center">
+        <div fxLayout="row" fxLayoutAlign="start center">
+          <button mat-button [routerLink]='["/"]'>BetterOwner</button>
+          <button mat-icon-button type="button" (click)="toggle()">
+            <mat-icon>view_headline</mat-icon>
+          </button>
+        </div>
+
+        <button mat-button [routerLinkActive]='["link-active"]' [routerLinkActiveOptions]='{ exact: true }' [routerLink]='["/"]'>Home</button>
+        <button mat-button [routerLinkActive]='["link-active"]' [routerLink]='["/counter"]'>Counter</button>
+        <button mat-button [routerLinkActive]='["link-active"]' [routerLink]='["/fetch-data"]'>Fetch data</button>
+      </div>
+      <!-- right content -->
+      <div fxLayout="row">
+        <button mat-button [routerLinkActive]='["link-active"]' [routerLink]='["/login"]'>登录</button>
+      </div>
+    </mat-toolbar-row>
+  </mat-toolbar>
+  <nav fxLayout="row" fxLayoutAlign="space-between center">
+  </nav>
+</header>
