@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { MatIconModule, MatToolbarModule, MatButtonModule } from '@angular/material';
+import { MatIconModule, MatToolbarModule, MatButtonModule, MatInputModule } from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './components/nav-menu/nav-menu.component';
@@ -12,6 +12,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomeComponent } from './pages/home/home.component';
 import { ExploreComponent } from './pages/explore/explore.component';
 import { PublishComponent } from './pages/publish/publish.component';
+import { FilesComponent } from './pages/files/files.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { PublishComponent } from './pages/publish/publish.component';
     HomeComponent,
     ExploreComponent,
     PublishComponent,
+    FilesComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -29,6 +31,7 @@ import { PublishComponent } from './pages/publish/publish.component';
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'explore', component: ExploreComponent, },
       { path: 'publish', component: PublishComponent, },
+      { path: 'files', component: FilesComponent, }, 
     ]),
     BrowserAnimationsModule,
     FlexLayoutModule,
@@ -36,6 +39,7 @@ import { PublishComponent } from './pages/publish/publish.component';
     MatIconModule,
     MatToolbarModule,
     MatButtonModule,
+    MatInputModule, 
   ],
   providers: [],
   bootstrap: [AppComponent]
