@@ -1,63 +1,37 @@
-﻿using BetterOwner.Services.Database;
+﻿using BetterOwner.Services.FileStore;
 using Microsoft.AspNetCore.Mvc;
 using System;
-using System.IO;
-using System.Linq;
+using System.Collections.Generic;
 
 namespace BetterOwner.Controllers
 {
     public class AttachmentController : Controller
     {
-        private readonly ApplicationDbContext _db;
+        private readonly IFileStore _fs;
 
-        public AttachmentController(ApplicationDbContext db)
+        public AttachmentController(IFileStore fs)
         {
-            _db = db;
+            _fs = fs;
         }
 
-        public object List()
+        public List<FileItem> List()
         {
-            return _db.Attachment.Select(x => new
-            {
-                Id = x.Id, 
-                FileName = x.FileName, 
-                Size = x.FileStream.Length
-            });
+            return _fs.GetFiles();
         }
 
         public IActionResult Download(Guid id)
         {
-            var file = _db.Attachment.Find(id);
-            return File(file.FileStream, "text/plain");
+            return File(_fs.Download(id), "application/octet/stream");
         }
 
         public IActionResult Upload()
         {
-            var attachments = Request.Form.Files.Select(x => new Attachment
-            {
-                FileName = x.FileName,
-                FileStream = ReadAll(x.OpenReadStream())
-            });
-
-            _db.Attachment.AddRange(attachments);
-            var count = _db.SaveChanges();
-            return Ok(count);
-
-
-            byte[] ReadAll(Stream stream)
-            {
-                using (var ms = new MemoryStream())
-                {
-                    stream.CopyTo(ms);
-                    return ms.ToArray();
-                }   
-            }
+            return Ok(_fs.Upload(Request.Form.Files));
         }
 
         public void Delete(Guid id)
         {
-            _db.Remove(new Attachment { Id = id });
-            _db.SaveChanges();
+            _fs.Delete(id);
         }
     }
 }
