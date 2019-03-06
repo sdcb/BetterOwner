@@ -9,7 +9,7 @@ namespace BetterOwner.Services.FileStore
     {
         List<FileItem> GetFiles();
 
-        Stream Download(Guid id);
+        FileDownloadItem Download(Guid id);
 
         void Delete(Guid id);
 

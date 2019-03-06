@@ -1,15 +1,13 @@
-﻿using System;
+﻿using System.IO;
 
 namespace BetterOwner.Services.FileStore
 {
-    public class FileItem
+    public class FileDownloadItem
     {
-        public Guid Id { get; set; }
-
         public string FileName { get; set; }
 
         public string ContentType { get; set; }
 
-        public int FileSize { get; set; }
+        public Stream FileStream { get; set; }
     }
 }

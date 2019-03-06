@@ -22,10 +22,10 @@ namespace BetterOwner.Services.FileStore
             _db.SaveChanges();
         }
 
-        public Stream Download(Guid id)
+        public FileDownloadItem Download(Guid id)
         {
-            var file = _db.Attachment.Find(id);
-            return new MemoryStream(file.FileStream);
+            Attachment file = _db.Attachment.Find(id);
+            return file.ToFileDownloadItem();
         }
 
         public int Upload(IFormFileCollection files)
@@ -33,6 +33,7 @@ namespace BetterOwner.Services.FileStore
             var attachments = files.Select(x => new Attachment
             {
                 FileName = x.FileName,
+                ContentType = x.ContentType, 
                 FileStream = ReadAll(x.OpenReadStream())
             });
 
@@ -55,6 +56,7 @@ namespace BetterOwner.Services.FileStore
             {
                 Id = x.Id, 
                 FileName = x.FileName, 
+                ContentType = x.ContentType, 
                 FileSize = x.FileStream.Length, 
             }).ToList();
         }

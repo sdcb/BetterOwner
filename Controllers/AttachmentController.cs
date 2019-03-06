@@ -21,7 +21,8 @@ namespace BetterOwner.Controllers
 
         public IActionResult Download(Guid id)
         {
-            return File(_fs.Download(id), "application/octet/stream");
+            FileDownloadItem fileDownloadItem = _fs.Download(id);
+            return File(fileDownloadItem.FileStream, fileDownloadItem.ContentType);
         }
 
         public IActionResult Upload()
