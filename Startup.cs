@@ -34,7 +34,7 @@ namespace BetterOwner
 
             var defaultConnection = Configuration["DefaultConnection"];
             services.AddDbContextPool<ApplicationDbContext>(o => o.UseSqlServer(Configuration["DefaultConnection"]));
-            services.AddTransient<IFileStore, EFFileStore>();
+            services.AddTransient<IFileStore, NativeFileStore>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

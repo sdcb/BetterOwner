@@ -2,7 +2,11 @@
 {
     public class SqlFileContext
     {
-        public string FilePath { get; set; }
+        public string FileName { get; set; }
+
+        public string ContentType { get; set; }
+
+        public string PathName { get; set; }
 
         public byte[] Context { get; set; }
     }

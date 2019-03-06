@@ -9,7 +9,7 @@ namespace BetterOwner.Services.FileStore
 {
     public class EFFileStore : IFileStore
     {
-        private readonly ApplicationDbContext _db;
+        protected readonly ApplicationDbContext _db;
 
         public EFFileStore(ApplicationDbContext db)
         {
@@ -22,13 +22,13 @@ namespace BetterOwner.Services.FileStore
             _db.SaveChanges();
         }
 
-        public FileDownloadItem Download(Guid id)
+        public virtual FileDownloadItem Download(Guid id)
         {
             Attachment file = _db.Attachment.Find(id);
             return file.ToFileDownloadItem();
         }
 
-        public int Upload(IFormFileCollection files)
+        public virtual int Upload(IFormFileCollection files)
         {
             var attachments = files.Select(x => new Attachment
             {
