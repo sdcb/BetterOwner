@@ -1,9 +1,11 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace BetterOwner.Services.Database
 {
     public class OAUser
     {
+        [Key]
         public int UserId { get; set; }
 
         public string JobId { get; set; }
@@ -15,6 +17,8 @@ namespace BetterOwner.Services.Database
         public string Phone { get; set; }
 
         public DateTime JoinTime { get; set; }
+
+        public User User { get; set; }
     }
 
     public enum Sex
