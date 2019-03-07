@@ -12,6 +12,8 @@ namespace BetterOwner.Services.FileStore
 {
     public class NativeFileStore : EFFileStore
     {
+        const string TableName = nameof(TreasurePicture);
+
         public NativeFileStore(ApplicationDbContext db) : base(db)
         {
         }
@@ -22,13 +24,13 @@ namespace BetterOwner.Services.FileStore
             if (connection.State != ConnectionState.Open) connection.Open();
 
             DbTransaction transaction = connection.BeginTransaction();
-            string sql = @"
+            string sql = $@"
                     SELECT 
                         FileName                             AS FileName, 
                         ContentType                          AS ContentType, 
                         FileStream.PathName()                AS PathName, 
                         GET_FILESTREAM_TRANSACTION_CONTEXT() AS Context 
-                    FROM Attachment WHERE Id = @Id";
+                    FROM [{TableName}] WHERE Id = @Id";
             SqlFileContext ctx = connection.QueryFirst<SqlFileContext>(sql, new { Id = id }, transaction);
 
             var stream = new SqlFileStream(ctx.PathName, ctx.Context, FileAccess.Read);
