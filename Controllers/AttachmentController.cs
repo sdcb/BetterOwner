@@ -28,7 +28,7 @@ namespace BetterOwner.Controllers
 
         public IActionResult Upload()
         {
-            return Ok(_fs.Upload(Request.Form.Files));
+            return Ok(_fs.Upload(0, Request.Form.Files));
         }
 
         public void Delete(Guid id)

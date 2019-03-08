@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
-using System.IO;
 
 namespace BetterOwner.Services.FileStore
 {
@@ -13,6 +12,6 @@ namespace BetterOwner.Services.FileStore
 
         void Delete(Guid id);
 
-        int Upload(IFormFileCollection files);
+        int Upload(int treasureId, IFormFileCollection files);
     }
 }

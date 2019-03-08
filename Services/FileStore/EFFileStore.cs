@@ -28,12 +28,14 @@ namespace BetterOwner.Services.FileStore
             return FileDownloadItem.FromTreasurePicture(file);
         }
 
-        public virtual int Upload(IFormFileCollection files)
+        public virtual int Upload(int treasureId, IFormFileCollection files)
         {
             var attachments = files.Select(x => new TreasurePicture
             {
+                TreasureId = treasureId, 
                 FileName = x.FileName,
                 ContentType = x.ContentType, 
+                FileSize = (int)x.Length, 
                 FileStream = ReadAll(x.OpenReadStream())
             });
 
