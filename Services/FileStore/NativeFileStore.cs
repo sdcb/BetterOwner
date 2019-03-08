@@ -7,8 +7,6 @@ using Microsoft.EntityFrameworkCore;
 using Dapper;
 using System.IO;
 using System.Data.SqlTypes;
-using System.Linq;
-using System.Collections.Generic;
 
 namespace BetterOwner.Services.FileStore
 {
