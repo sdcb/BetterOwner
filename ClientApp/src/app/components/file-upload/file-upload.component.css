@@ -1,0 +1,27 @@
+.upload-container {
+  border: 0.2rem dashed cornflowerblue;
+  min-height: 10rem;
+  cursor: pointer;
+  border-radius: 1rem;
+}
+
+.image-item {
+  height: 9em;
+}
+
+.picture-box {
+  position: relative;
+  margin: 0.4rem;
+}
+
+.image-description {
+  font-size: 1em;
+  color: blueviolet;
+}
+
+.delete-button {
+  top: 0.5rem;
+  right: 0.5rem;
+  position: absolute;
+  z-index: 1;
+}

@@ -1,3 +1,26 @@
-<p>
-  publish works!
-</p>
+<div class="h100" fxLayout="column" fxLayoutAlign="center center">
+  <mat-card class="publish-container">
+    <mat-card-title>发布</mat-card-title>
+    <mat-card-content fxLayout="column">
+      <div fxLayout="row">
+        <mat-form-field fxFlex="1 1 100%">
+          <input matInput placeholder="标题..." value="">
+        </mat-form-field>
+        <mat-form-field fxFlex="1 1 100%">
+          <input type="number" matInput placeholder="价格..." value="">
+        </mat-form-field>
+      </div>
+      <mat-form-field>
+        <textarea matInput placeholder="描述..." value=""></textarea>
+      </mat-form-field>
+      <div>
+        <span class="mat-h2">图片</span>
+        <app-file-upload></app-file-upload>
+      </div>
+    </mat-card-content>
+    <mat-card-actions fxLayout="row" fxLayoutAlign="space-between start">
+      <span></span>
+      <button mat-raised-button color="primary">提交</button>
+    </mat-card-actions>
+  </mat-card>
+</div>
