@@ -21,10 +21,11 @@ CREATE TABLE [OAUser]
 
 CREATE TABLE [Treasure]
 (
-	[Id]		   INT PRIMARY KEY NOT NULL IDENTITY(1, 1), 
+	[Id]		   INT PRIMARY KEY IDENTITY(1, 1) NOT NULL, 
 	[Title]		   NVARCHAR(50) NOT NULL, 
 	[Price]		   DECIMAL(19, 2) NOT NULL, 
 	[Description]  NVARCHAR(4000) NOT NULL, 
+	[IsPublic]     BIT NOT NULL,
 	[CreateTime]   DATETIME2 NOT NULL, 
 	[UpdateTime]   DATETIME2 NOT NULL, 
 	[CreateUserId] INT NOT NULL, 
@@ -41,7 +42,8 @@ CREATE TABLE [TreasurePicture]
 	[FileName]	  NVARCHAR(120) NOT NULL, 
 	[FileSize]    INT NOT NULL,
 	[ContentType] NVARCHAR(120) NOT NULL,
-	[FileStream]  VARBINARY(MAX) FILESTREAM NULL
+	[FileStream]  VARBINARY(MAX) FILESTREAM NOT NULL, 
+	FOREIGN KEY ([TreasureId]) REFERENCES [Treasure]([Id])
 )
 
 COMMIT

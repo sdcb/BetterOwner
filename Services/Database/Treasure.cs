@@ -12,6 +12,8 @@ namespace BetterOwner.Services.Database
 
         public string Description { get; set; }
 
+        public bool IsPublic { get; set; }
+
         public DateTime CreateTime { get; set; }
 
         public DateTime UpdateTime { get; set; }
