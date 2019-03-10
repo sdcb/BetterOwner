@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
-using System.Transactions;
 
 namespace BetterOwner.Controllers
 {
@@ -28,7 +27,7 @@ namespace BetterOwner.Controllers
 
         public IActionResult Upload()
         {
-            return Ok(_fs.Upload(Request.Form.Files));
+            return Ok(_fs.Upload(0, Request.Form.Files));
         }
 
         public void Delete(Guid id)

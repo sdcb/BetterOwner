@@ -87,7 +87,6 @@ namespace BetterOwner.Services.FileStore
                 SqlStream.Dispose();
                 Transaction.Dispose();
                 Connection.Dispose();
-                Debug.WriteLine(Thread.CurrentThread.ManagedThreadId + ":" + SqlStream.Name);
             }
             base.Dispose(disposing);
         }

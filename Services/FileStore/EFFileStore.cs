@@ -18,26 +18,28 @@ namespace BetterOwner.Services.FileStore
 
         public void Delete(Guid id)
         {
-            _db.Remove(new Attachment { Id = id });
+            _db.Remove(new TreasurePicture { Id = id });
             _db.SaveChanges();
         }
 
         public virtual FileDownloadItem Download(Guid id)
         {
-            Attachment file = _db.Attachment.Find(id);
-            return file.ToFileDownloadItem();
+            TreasurePicture file = _db.TreasurePictures.Find(id);
+            return FileDownloadItem.FromTreasurePicture(file);
         }
 
-        public virtual int Upload(IFormFileCollection files)
+        public virtual int Upload(int treasureId, IFormFileCollection files)
         {
-            var attachments = files.Select(x => new Attachment
+            var attachments = files.Select(x => new TreasurePicture
             {
+                TreasureId = treasureId, 
                 FileName = x.FileName,
                 ContentType = x.ContentType, 
+                FileSize = (int)x.Length, 
                 FileStream = ReadAll(x.OpenReadStream())
             });
 
-            _db.Attachment.AddRange(attachments);
+            _db.TreasurePictures.AddRange(attachments);
             return _db.SaveChanges();
 
             byte[] ReadAll(Stream stream)
@@ -52,7 +54,7 @@ namespace BetterOwner.Services.FileStore
 
         public List<FileItem> GetFiles()
         {
-            return _db.Attachment.Select(x => new FileItem
+            return _db.TreasurePictures.Select(x => new FileItem
             {
                 Id = x.Id, 
                 FileName = x.FileName, 

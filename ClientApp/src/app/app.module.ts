@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { MatIconModule, MatToolbarModule, MatButtonModule, MatInputModule } from '@angular/material';
+import { MatIconModule, MatToolbarModule, MatButtonModule, MatInputModule, MatCardModule, MatTooltipModule } from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './components/nav-menu/nav-menu.component';
@@ -13,6 +13,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { ExploreComponent } from './pages/explore/explore.component';
 import { PublishComponent } from './pages/publish/publish.component';
 import { FilesComponent } from './pages/files/files.component';
+import { FileUploadComponent } from './components/file-upload/file-upload.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { FilesComponent } from './pages/files/files.component';
     ExploreComponent,
     PublishComponent,
     FilesComponent,
+    FileUploadComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -31,7 +33,7 @@ import { FilesComponent } from './pages/files/files.component';
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'explore', component: ExploreComponent, },
       { path: 'publish', component: PublishComponent, },
-      { path: 'files', component: FilesComponent, }, 
+      { path: 'files', component: FilesComponent, },
     ]),
     BrowserAnimationsModule,
     FlexLayoutModule,
@@ -39,7 +41,9 @@ import { FilesComponent } from './pages/files/files.component';
     MatIconModule,
     MatToolbarModule,
     MatButtonModule,
-    MatInputModule, 
+    MatInputModule,
+    MatCardModule,
+    MatTooltipModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
