@@ -1,17 +1,18 @@
 ﻿using BetterOwner.Services.Database;
+using BetterOwner.Services.FileStore;
 using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
-namespace BetterOwner.Services.FileStore
+namespace BetterOwner.Services.TreasurePictureStore
 {
-    public class EFFileStore : IFileStore
+    public class EFTreasurePictureStore : ITreasurePictureStore
     {
         protected readonly ApplicationDbContext _db;
 
-        public EFFileStore(ApplicationDbContext db)
+        public EFTreasurePictureStore(ApplicationDbContext db)
         {
             _db = db;
         }
@@ -32,10 +33,10 @@ namespace BetterOwner.Services.FileStore
         {
             var attachments = files.Select(x => new TreasurePicture
             {
-                TreasureId = treasureId, 
+                TreasureId = treasureId,
                 FileName = x.FileName,
-                ContentType = x.ContentType, 
-                FileSize = (int)x.Length, 
+                ContentType = x.ContentType,
+                FileSize = (int)x.Length,
                 FileStream = ReadAll(x.OpenReadStream())
             });
 
@@ -52,15 +53,17 @@ namespace BetterOwner.Services.FileStore
             }
         }
 
-        public List<FileItem> GetFiles()
+        public List<FileItem> GetFiles(int treasureId)
         {
-            return _db.TreasurePictures.Select(x => new FileItem
-            {
-                Id = x.Id, 
-                FileName = x.FileName, 
-                ContentType = x.ContentType, 
-                FileSize = x.FileStream.Length, 
-            }).ToList();
+            return _db.TreasurePictures
+                .Where(x => x.TreasureId == treasureId)
+                .Select(x => new FileItem
+                {
+                    Id = x.Id,
+                    FileName = x.FileName,
+                    ContentType = x.ContentType,
+                    FileSize = x.FileStream.Length,
+                }).ToList();
         }
     }
 }

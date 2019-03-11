@@ -33,6 +33,7 @@ namespace BetterOwner
 
             var defaultConnection = Configuration["DefaultConnection"];
             services.AddDbContextPool<ApplicationDbContext>(o => o.UseSqlServer(Configuration["DefaultConnection"]));
+            services.AddFileStore(Configuration["FileStore"]);
             services.AddTransient<IFileStore, NativeFileStore>();
         }
 

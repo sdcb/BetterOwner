@@ -7,14 +7,15 @@ using Microsoft.EntityFrameworkCore;
 using Dapper;
 using System.IO;
 using System.Data.SqlTypes;
+using BetterOwner.Services.FileStore;
 
-namespace BetterOwner.Services.FileStore
+namespace BetterOwner.Services.TreasurePictureStore
 {
-    public class NativeFileStore : EFFileStore
+    public class NativeTreasurePictureStore : EFTreasurePictureStore
     {
         const string TableName = nameof(TreasurePicture);
 
-        public NativeFileStore(ApplicationDbContext db) : base(db)
+        public NativeTreasurePictureStore(ApplicationDbContext db) : base(db)
         {
         }
 
