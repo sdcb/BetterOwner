@@ -6,7 +6,7 @@ namespace BetterOwner.Services.FileStore
 {
     public static class ServiceFileStoreExtensions
     {
-        public static void AddFileStore(this IServiceCollection service, string fileStoreConfiguration)
+        public static IServiceCollection AddFileStore(this IServiceCollection service, string fileStoreConfiguration)
         {
             switch (fileStoreConfiguration)
             {
@@ -21,6 +21,7 @@ namespace BetterOwner.Services.FileStore
                 default:
                     throw new Exception($"FileStore '{fileStoreConfiguration}' is not recognized as a valid file store.");
             }
+            return service;
         }
     }
 }

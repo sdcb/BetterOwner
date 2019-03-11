@@ -1,5 +1,5 @@
+using BetterOwner.Services;
 using BetterOwner.Services.Database;
-using BetterOwner.Services.FileStore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
@@ -33,7 +33,7 @@ namespace BetterOwner
 
             var defaultConnection = Configuration["DefaultConnection"];
             services.AddDbContextPool<ApplicationDbContext>(o => o.UseSqlServer(Configuration["DefaultConnection"]));
-            services.AddFileStore(Configuration["FileStore"]);
+            services.ConfigureAppServices(Configuration);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
