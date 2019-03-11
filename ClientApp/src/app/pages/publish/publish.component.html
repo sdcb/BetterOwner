@@ -2,20 +2,19 @@
   <mat-card class="publish-container">
     <mat-card-title>发布</mat-card-title>
     <mat-card-content fxLayout="column">
-      <div fxLayout="row">
+      <div fxLayout="row" fxLayoutGap="1rem">
         <mat-form-field fxFlex="1 1 100%">
-          <input matInput placeholder="标题..." value="">
+          <input matInput placeholder="我要发布..." value="">
         </mat-form-field>
         <mat-form-field fxFlex="1 1 100%">
           <input type="number" matInput placeholder="价格..." value="">
         </mat-form-field>
       </div>
-      <mat-form-field>
-        <textarea matInput placeholder="描述..." value=""></textarea>
-      </mat-form-field>
-      <div>
-        <span class="mat-h2">图片</span>
-        <app-file-upload></app-file-upload>
+      <div fxLayout="column" fxLayoutGap="1rem">
+        <mat-form-field>
+          <textarea rows="6" matInput placeholder="描述..." value=""></textarea>
+        </mat-form-field>
+        <app-file-upload fxFlex="1 1 100%" matTooltip="上传图片"></app-file-upload>
       </div>
     </mat-card-content>
     <mat-card-actions fxLayout="row" fxLayoutAlign="space-between start">

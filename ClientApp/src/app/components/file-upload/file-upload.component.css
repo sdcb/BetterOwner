@@ -2,7 +2,7 @@
   border: 0.2rem dashed cornflowerblue;
   min-height: 10rem;
   cursor: pointer;
-  border-radius: 1rem;
+  border-radius: 0.3rem;
 }
 
 .image-item {
