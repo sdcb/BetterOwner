@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace BetterOwner.Services.Database
 {
-    public class ApplicationDbContext : IdentityDbContext
+    public class ApplicationDbContext : IdentityDbContext<User, Role, int>
     {
         public ApplicationDbContext(DbContextOptions options) : base(options)
         {

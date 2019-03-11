@@ -1,3 +1,4 @@
+import { PublishApiService } from './publish.api';
 import { Component, OnInit } from '@angular/core';
 import { SimpleSnackBar, MatSnackBar } from '@angular/material';
 
@@ -12,7 +13,9 @@ export class PublishComponent implements OnInit {
   description: string;
   files: File[];
 
-  constructor(private snackBar: MatSnackBar) { }
+  constructor(
+    private api: PublishApiService,
+    private snackBar: MatSnackBar) { }
 
   ngOnInit() {
   }

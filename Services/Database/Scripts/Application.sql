@@ -9,14 +9,8 @@ CREATE TABLE [OAUser]
 	[UserId]   INT PRIMARY KEY NOT NULL, 
 	[JobId]    NVARCHAR(10) NOT NULL,  
 	[Sex]      TINYINT NOT NULL, 
-	[Email]    NVARCHAR(60) NOT NULL, 
-	[Phone]    NVARCHAR(50) NOT NULL, 
-	[JoinTime] DATETIME2, 
 	FOREIGN KEY     ([UserId]) REFERENCES   [User]([Id]), 
-	INDEX    [IX_OAUser_JobId] NONCLUSTERED (   [JobId]  ASC), 
-	INDEX    [IX_OAUser_Email] NONCLUSTERED (   [Email]  ASC), 
-	INDEX    [IX_OAUser_Phone] NONCLUSTERED (   [Phone]  ASC), 
-	INDEX [IX_OAUser_JoinTime] NONCLUSTERED ([JoinTime] DESC), 
+	INDEX    [IX_OAUser_JobId] NONCLUSTERED ([JobId] ASC), 
 )
 
 CREATE TABLE [Treasure]

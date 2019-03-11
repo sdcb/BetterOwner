@@ -1,5 +1,4 @@
-﻿using BetterOwner.Services.Database;
-using BetterOwner.Services.TreasureManager;
+﻿using BetterOwner.Services.TreasureManager;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BetterOwner.Controllers

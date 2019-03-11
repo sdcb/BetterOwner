@@ -1,7 +1,9 @@
 using BetterOwner.Services;
 using BetterOwner.Services.Database;
+using BetterOwner.Services.Identity;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -34,6 +36,24 @@ namespace BetterOwner
             var defaultConnection = Configuration["DefaultConnection"];
             services.AddDbContextPool<ApplicationDbContext>(o => o.UseSqlServer(Configuration["DefaultConnection"]));
             services.ConfigureAppServices(Configuration);
+
+            services.AddIdentity<User, Role>(o =>
+                {
+                    o.User.RequireUniqueEmail = true;
+                    o.User.AllowedUserNameCharacters = null;
+                })
+                .AddDefaultUI()
+                .AddUserManager<UserManager>()
+                .AddRoles<Role>()
+                .AddEntityFrameworkStores<ApplicationDbContext>()
+                .AddDefaultTokenProviders();
+            services.AddAntiforgery(o => o.HeaderName = "X-XSRF-TOKEN");
+
+            services.AddAuthentication().AddYeluCasSso(o =>
+            {
+                o.YeluCasSsoEndpoint = Configuration["YeluCasSsoEndpoint"];
+                //o.Events.OnCreatingClaims = UserManager.OnCreatingClaims;
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -53,6 +73,8 @@ namespace BetterOwner
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
+            app.UseAuthentication();
+            app.UseAntiforgeryToken();
 
             app.UseMvc(routes =>
             {
