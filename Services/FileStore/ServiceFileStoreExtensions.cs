@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using BetterOwner.Services.TreasurePictureStore;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 
 namespace BetterOwner.Services.FileStore
@@ -12,10 +13,10 @@ namespace BetterOwner.Services.FileStore
                 case null:
                     throw new Exception("FileStore has not been configured.");
                 case "Native":
-                    service.AddTransient<IFileStore, NativeFileStore>();
+                    service.AddTransient<ITreasurePictureStore, NativeTreasurePictureStore>();
                     break;
                 case "EF":
-                    service.AddTransient<IFileStore, EFFileStore>();
+                    service.AddTransient<ITreasurePictureStore, EFTreasurePictureStore>();
                     break;
                 default:
                     throw new Exception($"FileStore '{fileStoreConfiguration}' is not recognized as a valid file store.");
