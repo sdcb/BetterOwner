@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { MatIconModule, MatToolbarModule, MatButtonModule, MatInputModule, MatCardModule, MatTooltipModule } from '@angular/material';
+import { MatIconModule, MatToolbarModule, MatButtonModule, MatInputModule, MatCardModule, MatTooltipModule, MatRippleModule, MatSnackBarModule } from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './components/nav-menu/nav-menu.component';
@@ -44,6 +44,7 @@ import { FileUploadComponent } from './components/file-upload/file-upload.compon
     MatInputModule,
     MatCardModule,
     MatTooltipModule,
+    MatSnackBarModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

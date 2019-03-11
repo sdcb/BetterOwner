@@ -1,21 +1,21 @@
 ﻿using BetterOwner.Services.Database;
+using BetterOwner.Services.TreasureManager;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BetterOwner.Controllers
 {
     public class PublishController : Controller
     {
-        private readonly ApplicationDbContext _db;
+        private readonly ITreasureManager treasureManager;
 
-        public PublishController(ApplicationDbContext db)
+        public PublishController(ITreasureManager treasureManager)
         {
-            _db = db;
+            this.treasureManager = treasureManager;
         }
 
-        public void Create(Treasure treasure)
+        public void Create([FromBody]TreasureCreateDto treasure)
         {
-            _db.Add(treasure);
-            _db.SaveChanges();
+            treasureManager.Create(treasure, Request.Form.Files);
         }
     }
 }

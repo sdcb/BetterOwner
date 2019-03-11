@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-file-upload',
@@ -9,37 +9,87 @@ export class FileUploadComponent implements OnInit {
   @ViewChild('file')
   file: ElementRef<HTMLInputElement>;
 
-  files = Array<FileItem>();
+  limit = new FileLimitations();
+
+  @Input()
+  set typeLimit(value: FileType) { this.limit.type = value; }
+
+  @Input()
+  set sizeLimit(value: number) { this.limit.size = value; }
+
+  @Input()
+  set countLimit(value: number) { this.limit.count = value; }
+
+  @Output()
+  fileChanged = new EventEmitter<File[]>();
+
+  rawFiles = Array<FileItem>();
 
   constructor() { }
 
   ngOnInit() {
+    console.log(this.limit);
   }
 
-  hasData() { return this.files.length > 0; }
+  getValidFiles() {
+    return this.rawFiles
+      .filter((x, index) => this.limit.isValid(x, index))
+      .map(x => x.file);
+  }
+
+  validate(item: FileItem, index: number) { return this.limit.validate(item, index); }
+
+  hasData() { return this.rawFiles.length > 0; }
 
   remove(fileItem: FileItem, event: MouseEvent) {
-    this.files = this.files.filter(x => x !== fileItem);
+    this.rawFiles = this.rawFiles.filter(x => x !== fileItem);
     event.stopPropagation();
+    this.fileChanged.emit(this.getValidFiles());
   }
 
-  async fileSelected(files: FileList) {
+  fileSelected(files: FileList) {
     for (let i = 0; i < files.length; ++i) {
-      this.files.push(await FileItem.create(files[i]));
+      this.rawFiles.push(new FileItem(files[i]));
     }
+    this.fileChanged.emit(this.getValidFiles());
+  }
+}
+
+export type FileType = 'picture';
+
+export class FileLimitations {
+  type: FileType;
+  size = 4 * 1024 * 1024;
+  count = 5;
+
+  validate(item: FileItem, index: number) {
+    if (index >= this.count) { return `超过${this.count}个文件`; }
+    if (item.file.size > this.size) { return `文件超限制大小${this.size}`; }
+    if (this.type === 'picture' && !item.isPicture()) { return `"${item.file.type}"不是图片`; }
+    return null;
+  }
+
+  isValid(item: FileItem, index: number) {
+    return this.validate(item, index) === null;
   }
 }
 
 export class FileItem {
-  file: File;
+  static fileTypeMapping = {
+    picture: [
+      'image/gif',
+      'image/jpeg',
+      'image/png',
+      'image/tiff']
+  };
+
   dataUrl: string;
 
-  static async create(file: File) {
-    return {
-      file: file,
-      dataUrl: await readFileAsync(file)
-    };
+  constructor(public file: File) {
+    if (this.isPicture()) { readFileAsync(file).then(x => this.dataUrl = x); }
   }
+
+  isPicture() { return FileItem.fileTypeMapping.picture.includes(this.file.type); }
 }
 
 function readFileAsync(file: File) {

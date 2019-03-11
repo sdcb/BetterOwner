@@ -6,8 +6,15 @@
 }
 
 .image-item {
-  height: 9em;
+  height: 8rem;
   border: 1px solid cornflowerblue;
+}
+
+.hovered .image-item {
+  filter: blur(0.1rem);
+}
+.invalid .image-item {
+  filter: blur(0.3rem);
 }
 
 .picture-box {
@@ -15,9 +22,12 @@
   margin: 0.4rem;
 }
 
+.picture-box.invalid {
+  border: 1px solid red;
+}
+
 .image-description {
   font-size: 1em;
-  color: blueviolet;
 }
 
 .delete-button {

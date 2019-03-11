@@ -1,11 +1,14 @@
 <input type="file" fxHide multiple #file (change)="fileSelected(file.files)">
 
 <!-- 有数据模板 -->
-<div *ngIf="hasData()" class="w100" class="upload-container" fxLayout="row wrap" fxLayoutAlign="space-around center" (click)="file.click()">
-  <div *ngFor="let item of files" class="picture-box">
-    <img class="image-item" [src]="item.dataUrl">
-    <div class="a-center image-description">
-      {{item.file.name}}
+<div *ngIf="hasData()" class="w100" class="upload-container" fxLayout="row wrap" fxLayoutAlign="space-around center"
+  (click)="file.click()">
+  <div *ngFor="let item of rawFiles; let i=index; let mouseOvered=false;" class="picture-box"
+    [class.hovered]="mouseOvered" [class.invalid]="!limit.isValid(item, i)" (mouseover)="mouseOvered=true"
+    (mouseout)="mouseOvered=false">
+    <img class="image-item" *ngIf="item.dataUrl" [src]="item.dataUrl">
+    <div class="a-center image-description" color="primary">
+      {{limit.validate(item, i) || item.file.name}}
     </div>
     <mat-icon class="delete-button" color="warn" matTooltip="移除" (click)="remove(item, $event)">delete</mat-icon>
   </div>
@@ -14,5 +17,5 @@
 <!-- 无数据模板 -->
 <div *ngIf="!hasData()" class="w100" class="upload-container" (click)="file.click()" fxLayoutAlign="center center">
   <mat-icon>cloud_upload</mat-icon>
-  点击上传
+  点击选择文件
 </div>
