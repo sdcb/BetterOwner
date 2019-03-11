@@ -18,8 +18,8 @@ export class FileUploadComponent implements OnInit {
 
   hasData() { return this.files.length > 0; }
 
-  remove(fileItem: File, event: MouseEvent) {
-    this.files = this.files.filter(x => x.file !== fileItem);
+  remove(fileItem: FileItem, event: MouseEvent) {
+    this.files = this.files.filter(x => x !== fileItem);
     event.stopPropagation();
   }
 
