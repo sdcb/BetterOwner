@@ -5,7 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatIconModule, MatToolbarModule, MatButtonModule, MatInputModule, MatCardModule, MatTooltipModule,
-         MatSnackBarModule, MatDialogModule } from '@angular/material';
+         MatSnackBarModule, MatDialogModule, MatProgressSpinnerModule } from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './components/nav-menu/nav-menu.component';
@@ -48,6 +48,7 @@ import { FileUploadComponent } from './components/file-upload/file-upload.compon
     MatTooltipModule,
     MatSnackBarModule,
     MatDialogModule,
+    MatProgressSpinnerModule, 
   ],
   entryComponents: [
     PublishComponent,
