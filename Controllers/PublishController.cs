@@ -12,7 +12,7 @@ namespace BetterOwner.Controllers
             this.treasureManager = treasureManager;
         }
 
-        public void Create([FromBody]TreasureCreateDto treasure)
+        public void Create(TreasureCreateDto treasure)
         {
             treasureManager.Create(treasure, Request.Form.Files);
         }

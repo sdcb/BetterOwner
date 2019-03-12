@@ -16,8 +16,13 @@ namespace BetterOwner.Services.Database
 
             RemovePrefixAndSuffix(modelBuilder);
 
-            modelBuilder.Entity<TreasurePicture>().Property(x => x.Id)
+            modelBuilder.Entity<Treasure>()
+                .Property(x => x.Price).HasColumnType("decimal(19,4)");
+
+            modelBuilder.Entity<TreasurePicture>()
+                .Property(x => x.Id)
                 .HasDefaultValueSql("NEWSEQUENTIALID()");
+            
             modelBuilder.Entity<OAUser>(entity =>
             {
                 entity.HasOne(p => p.User)

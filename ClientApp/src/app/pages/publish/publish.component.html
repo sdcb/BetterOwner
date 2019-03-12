@@ -1,9 +1,14 @@
-<h1 mat-dialog-title>发布</h1>
+<h1 mat-dialog-title fxLayout="row" fxLayoutAlign="space-between center">
+  <span>发布</span>
+  <button mat-icon-button (click)="close()">
+    <mat-icon>close</mat-icon>
+  </button>
+</h1>
 
 <div mat-dialog-content fxLayout="column">
   <div fxLayout="row" fxLayoutGap="1rem">
     <mat-form-field fxFlex="1 1 100%">
-      <input matInput placeholder="我要发布..." required [(ngModel)]="title">
+      <input matInput placeholder="我要发布..." required [(ngModel)]="title" cdkFocusInitial>
     </mat-form-field>
     <mat-form-field fxFlex="1 1 100%">
       <input type="number" matInput placeholder="价格..." min="0.1" required [(ngModel)]="price">
