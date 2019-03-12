@@ -117,9 +117,6 @@ namespace BetterOwner.Areas.Identity.Pages.Account
             string userName = info.Principal.FindFirstValue(CasConstants.Name);
 
             User user = await _userManager.FindByEmailAsync(email);
-            var jobId = info.Principal.FindFirst(CasConstants.JobNumber).Value;
-            var phone = info.Principal.FindFirst(CasConstants.Phone).Value;
-            var sex = info.Principal.FindFirst(CasConstants.Gender).Value;
 
             if (user == null)
             {
@@ -127,12 +124,11 @@ namespace BetterOwner.Areas.Identity.Pages.Account
                 {
                     UserName = info.Principal.FindFirstValue(CasConstants.Name),
                     Email = info.Principal.FindFirstValue(CasConstants.Email),
-                    PhoneNumber = phone, 
+                    PhoneNumber = info.Principal.FindFirst(CasConstants.Phone).Value, 
                     OAUser = new OAUser
                     {
-                        JobId = jobId,
-                        Phone = phone,
-                        Sex = (Sex)int.Parse(sex),
+                        JobId = info.Principal.FindFirst(CasConstants.JobNumber).Value,
+                        Sex = (Sex)int.Parse(info.Principal.FindFirst(CasConstants.Gender).Value),
                     },
                 };
 
