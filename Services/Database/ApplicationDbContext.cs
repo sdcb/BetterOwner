@@ -14,7 +14,21 @@ namespace BetterOwner.Services.Database
         {
             base.OnModelCreating(modelBuilder);
 
-            // Delete prefix AspNet in AspNet*s tables
+            RemovePrefixAndSuffix(modelBuilder);
+
+            modelBuilder.Entity<TreasurePicture>().Property(x => x.Id)
+                .HasDefaultValueSql("NEWSEQUENTIALID()");
+            modelBuilder.Entity<OAUser>(entity =>
+            {
+                entity.HasOne(p => p.User)
+                    .WithOne(p => p.OAUser)
+                    .HasForeignKey<OAUser>(p => p.UserId)
+                    .OnDelete(DeleteBehavior.Restrict);
+            });
+        }
+
+        private static void RemovePrefixAndSuffix(ModelBuilder modelBuilder)
+        {
             foreach (IMutableEntityType entityType in modelBuilder.Model.GetEntityTypes())
             {
                 string tableName = entityType.Relational().TableName;
@@ -28,13 +42,6 @@ namespace BetterOwner.Services.Database
                     entityType.Relational().TableName = tableName[..^1];
                 }
             }
-
-            modelBuilder.Entity<TreasurePicture>().Property(x => x.Id)
-                .HasDefaultValueSql("NEWSEQUENTIALID()");
-            modelBuilder.Entity<OAUser>(o =>
-            {
-                o.HasOne(p => p.User).WithOne().HasForeignKey<User>(p => p.Id);
-            });
         }
 
         public DbSet<OAUser> OAUsers { get; set; }
