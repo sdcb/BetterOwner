@@ -20,11 +20,13 @@ namespace BetterOwner.Services.Database
                 string tableName = entityType.Relational().TableName;
                 if (tableName.StartsWith("AspNet"))
                 {
-                    entityType.Relational().TableName = tableName[6..];
+                    entityType.Relational().TableName = tableName[6..^1];
                 }
-
-                // Delete suffix s in ALL tables
-                entityType.Relational().TableName = tableName[..^1];
+                else
+                {
+                    // Delete suffix s in ALL tables
+                    entityType.Relational().TableName = tableName[..^1];
+                }
             }
 
             modelBuilder.Entity<TreasurePicture>().Property(x => x.Id)
