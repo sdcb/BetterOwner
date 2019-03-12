@@ -3,14 +3,7 @@
     <mat-toolbar-row fxLayout="row" fxLayoutAlign="space-between center">
       <!-- left content -->
       <div fxLayout="row" fxLayoutGap="1rem" fxLayoutAlign="start center">
-        <div fxLayout="row" fxLayoutAlign="start center">
-          <button mat-button [routerLink]='["/"]'>BetterOwner</button>
-          <button mat-icon-button type="button" (click)="toggle()">
-            <mat-icon>view_headline</mat-icon>
-          </button>
-        </div>
-
-        <button mat-button [routerLinkActive]='["link-active"]' [routerLinkActiveOptions]='{ exact: true }' [routerLink]='["/"]'>首页</button>
+        <button mat-button [routerLinkActive]='["link-active"]' [routerLink]='["/home"]'>BetterOwner</button>
         <button mat-button [routerLinkActive]='["link-active"]' [routerLink]='["/explore"]'>寻宝</button>
         <button mat-button [routerLinkActive]='["link-active"]' [routerLink]='["/publish"]'>发布</button>
       </div>

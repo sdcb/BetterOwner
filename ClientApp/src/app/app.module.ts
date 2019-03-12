@@ -4,7 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { MatIconModule, MatToolbarModule, MatButtonModule, MatInputModule, MatCardModule, MatTooltipModule, MatRippleModule, MatSnackBarModule } from '@angular/material';
+import { MatIconModule, MatToolbarModule, MatButtonModule, MatInputModule, MatCardModule, MatTooltipModule,
+         MatSnackBarModule, MatDialogModule } from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './components/nav-menu/nav-menu.component';
@@ -30,7 +31,8 @@ import { FileUploadComponent } from './components/file-upload/file-upload.compon
     HttpClientModule,
     FormsModule,
     RouterModule.forRoot([
-      { path: '', component: HomeComponent, pathMatch: 'full' },
+      { path: '', redirectTo: 'home', pathMatch: 'full' },
+      { path: 'home', component: HomeComponent },
       { path: 'explore', component: ExploreComponent, },
       { path: 'publish', component: PublishComponent, },
       { path: 'files', component: FilesComponent, },
@@ -45,6 +47,10 @@ import { FileUploadComponent } from './components/file-upload/file-upload.compon
     MatCardModule,
     MatTooltipModule,
     MatSnackBarModule,
+    MatDialogModule,
+  ],
+  entryComponents: [
+    PublishComponent,
   ],
   providers: [],
   bootstrap: [AppComponent]

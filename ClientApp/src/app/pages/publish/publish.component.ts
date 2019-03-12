@@ -1,6 +1,6 @@
 import { PublishApiService } from './publish.api';
 import { Component, OnInit } from '@angular/core';
-import { SimpleSnackBar, MatSnackBar } from '@angular/material';
+import { SimpleSnackBar, MatSnackBar, MatDialog, MatDialogRef } from '@angular/material';
 
 @Component({
   selector: 'app-publish',
@@ -11,11 +11,16 @@ export class PublishComponent implements OnInit {
   title: string;
   price: number;
   description: string;
-  files: File[];
+  files: File[] = [];
 
   constructor(
     private api: PublishApiService,
-    private snackBar: MatSnackBar) { }
+    private snackBar: MatSnackBar,
+    private dialogRef: MatDialogRef<PublishComponent, boolean>) { }
+
+  static openDialog(dialogService: MatDialog) {
+    return dialogService.open<PublishComponent, any, boolean>(PublishComponent);
+  }
 
   ngOnInit() {
   }
@@ -25,13 +30,17 @@ export class PublishComponent implements OnInit {
   }
 
   submit() {
+    console.log(this.title, this.price, this.description, this.files);
+
     const error = this.validate();
     if (error !== null) {
       this.snackBar.open(error, '错误');
       return;
     }
 
-    this.api.create(this.title, this.price, this.description, this.files);
+    this.api.create(this.title, this.price, this.description, this.files).subscribe(() => {
+      this.dialogRef.close(true);
+    });
   }
 
   validate() {

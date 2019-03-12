@@ -1,25 +1,23 @@
-<div class="h100" fxLayout="column" fxLayoutAlign="center center">
-  <mat-card class="publish-container">
-    <mat-card-title>发布</mat-card-title>
-    <mat-card-content fxLayout="column">
-      <div fxLayout="row" fxLayoutGap="1rem">
-        <mat-form-field fxFlex="1 1 100%">
-          <input matInput placeholder="我要发布..." required ([ngModel])="title">
-        </mat-form-field>
-        <mat-form-field fxFlex="1 1 100%">
-          <input type="number" matInput placeholder="价格..." min="0.1" required ([ngModel])="price">
-        </mat-form-field>
-      </div>
-      <div fxLayout="column" fxLayoutGap="1rem">
-        <mat-form-field>
-          <textarea rows="6" matInput placeholder="描述..." ([ngModel])="description"></textarea>
-        </mat-form-field>
-        <app-file-upload typeLimit="picture" fxFlex="1 1 100%" (fileChanged)="storeFiles($event)"></app-file-upload>
-      </div>
-    </mat-card-content>
-    <mat-card-actions fxLayout="row" fxLayoutAlign="space-between start">
-      <span></span>
-      <button mat-raised-button color="primary" (click)="submit()">提交</button>
-    </mat-card-actions>
-  </mat-card>
+<h1 mat-dialog-title>发布</h1>
+
+<div mat-dialog-content fxLayout="column">
+  <div fxLayout="row" fxLayoutGap="1rem">
+    <mat-form-field fxFlex="1 1 100%">
+      <input matInput placeholder="我要发布..." required [(ngModel)]="title">
+    </mat-form-field>
+    <mat-form-field fxFlex="1 1 100%">
+      <input type="number" matInput placeholder="价格..." min="0.1" required [(ngModel)]="price">
+    </mat-form-field>
+  </div>
+  <div fxLayout="column" fxLayoutGap="1rem">
+    <mat-form-field>
+      <textarea rows="4" matInput placeholder="描述..." required [(ngModel)]="description"></textarea>
+    </mat-form-field>
+    <app-file-upload typeLimit="picture" fxFlex="1 1 100%" (fileChanged)="storeFiles($event)"></app-file-upload>
+  </div>
+</div>
+
+<div mat-dialog-actions fxLayout="row" fxLayoutAlign="space-between start">
+  <span></span>
+  <button mat-raised-button color="primary" (click)="submit()">提交</button>
 </div>

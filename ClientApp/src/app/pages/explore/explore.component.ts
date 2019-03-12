@@ -1,4 +1,6 @@
+import { MatDialog } from '@angular/material';
 import { Component, OnInit } from '@angular/core';
+import { PublishComponent } from '../publish/publish.component';
 
 @Component({
   selector: 'app-explore',
@@ -7,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ExploreComponent implements OnInit {
 
-  constructor() { }
+  constructor(private dialogService: MatDialog) { }
 
   ngOnInit() {
   }
 
+  openPublish() {
+    PublishComponent.openDialog(this.dialogService).afterClosed().subscribe(x => {
+      console.log(x);
+    });
+  }
 }

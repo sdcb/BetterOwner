@@ -28,7 +28,6 @@ export class FileUploadComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    console.log(this.limit);
   }
 
   getValidFiles() {
