@@ -2,5 +2,8 @@
   <app-nav-menu></app-nav-menu>
   <div fxFlex="1 1 100%">
     <router-outlet></router-outlet>
+    <div *ngIf="globalLoading.visible" class="loading-indicator">
+      <mat-spinner></mat-spinner>
+    </div>
   </div>
 </body>

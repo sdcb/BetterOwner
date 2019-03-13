@@ -1,6 +1,7 @@
 import { PublishApiService } from './publish.api';
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar, MatDialog, MatDialogRef } from '@angular/material';
+import { GlobalLoadingService } from 'src/app/services/global-loading.service';
 
 @Component({
   selector: 'app-publish',
@@ -16,7 +17,8 @@ export class PublishComponent implements OnInit {
   constructor(
     private api: PublishApiService,
     private snackBar: MatSnackBar,
-    private dialogRef: MatDialogRef<PublishComponent>) { }
+    private dialogRef: MatDialogRef<PublishComponent>,
+    private loading: GlobalLoadingService) { }
 
   static openDialog(dialogService: MatDialog) {
     return dialogService.open<PublishComponent, any, boolean>(PublishComponent, {
@@ -35,16 +37,15 @@ export class PublishComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  submit() {
+  async submit() {
     const error = this.validate();
     if (error !== null) {
       this.snackBar.open(error, '错误');
       return;
     }
 
-    this.api.create(this.title, this.price, this.description, this.files).subscribe(() => {
-      this.dialogRef.close(true);
-    });
+    await this.loading.wrap(this.api.create(this.title, this.price, this.description, this.files).toPromise());
+    this.dialogRef.close(true);
   }
 
   validate() {

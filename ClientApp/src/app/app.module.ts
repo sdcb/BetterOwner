@@ -48,7 +48,7 @@ import { FileUploadComponent } from './components/file-upload/file-upload.compon
     MatTooltipModule,
     MatSnackBarModule,
     MatDialogModule,
-    MatProgressSpinnerModule, 
+    MatProgressSpinnerModule,
   ],
   entryComponents: [
     PublishComponent,
