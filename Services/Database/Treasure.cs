@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace BetterOwner.Services.Database
 {
@@ -21,5 +22,7 @@ namespace BetterOwner.Services.Database
         public int CreateUserId { get; set; }
 
         public User CreateUser { get; set; }
+
+        public ICollection<TreasurePicture> TreasurePictures { get; set; }
     }
 }
