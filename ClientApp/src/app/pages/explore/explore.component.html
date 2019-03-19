@@ -1,6 +1,12 @@
-<p>
-  explore works!
-</p>
+<table>
+  <tr *ngFor="let item of treasures">
+    <td>{{item.id}}</td>
+    <td>{{item.title}}</td>
+    <td>{{item.price}}</td>
+    <td>{{item.publishUser}}</td>
+    <td>{{item.pictureUrl}}</td>
+  </tr>
+</table>
 
 <button mat-fab color="primary" class="create-button" matTooltip="发布..." (click)="openPublish()">
   <mat-icon>add</mat-icon>

@@ -18,7 +18,7 @@ export class ExploreComponent implements OnInit {
     private loading: GlobalLoadingService) { }
 
   async ngOnInit() {
-    await this.loading.wrap(this.api.treasures({}).toPromise());
+    this.treasures = await this.api.treasures({}).toPromise();
   }
 
   openPublish() {
