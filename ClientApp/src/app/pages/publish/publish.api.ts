@@ -5,12 +5,12 @@ import { HttpClient } from '@angular/common/http';
 export class PublishApiService {
   constructor(private httpClient: HttpClient) { }
 
-  create(title: string, price: number, description: string, files: File[]) {
+  publish(title: string, price: number, description: string, files: File[]) {
     const form = new FormData();
     form.append('title', title);
     form.append('price', price.toString());
     form.append('description', description);
     for (const file of files) { form.append('files', file, file.name); }
-    return this.httpClient.post('/publish/create', form);
+    return this.httpClient.post('/api/publish/create', form);
   }
 }

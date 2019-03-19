@@ -13,7 +13,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomeComponent } from './pages/home/home.component';
 import { ExploreComponent } from './pages/explore/explore.component';
 import { PublishComponent } from './pages/publish/publish.component';
-import { FilesComponent } from './pages/files/files.component';
 import { FileUploadComponent } from './components/file-upload/file-upload.component';
 
 @NgModule({
@@ -23,7 +22,6 @@ import { FileUploadComponent } from './components/file-upload/file-upload.compon
     HomeComponent,
     ExploreComponent,
     PublishComponent,
-    FilesComponent,
     FileUploadComponent,
   ],
   imports: [
@@ -34,8 +32,6 @@ import { FileUploadComponent } from './components/file-upload/file-upload.compon
       { path: '', redirectTo: 'home', pathMatch: 'full' },
       { path: 'home', component: HomeComponent },
       { path: 'explore', component: ExploreComponent, },
-      { path: 'publish', component: PublishComponent, },
-      { path: 'files', component: FilesComponent, },
     ]),
     BrowserAnimationsModule,
     FlexLayoutModule,

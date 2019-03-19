@@ -44,7 +44,7 @@ export class PublishComponent implements OnInit {
       return;
     }
 
-    await this.loading.wrap(this.api.create(this.title, this.price, this.description, this.files).toPromise());
+    await this.loading.wrap(this.api.publish(this.title, this.price, this.description, this.files).toPromise());
     this.dialogRef.close(true);
   }
 

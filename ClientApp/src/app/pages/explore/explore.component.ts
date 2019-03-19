@@ -1,6 +1,8 @@
+import { ExploreApiService, TreasureExploreDto } from './explore.api';
 import { MatDialog } from '@angular/material';
 import { Component, OnInit } from '@angular/core';
 import { PublishComponent } from '../publish/publish.component';
+import { GlobalLoadingService } from 'src/app/services/global-loading.service';
 
 @Component({
   selector: 'app-explore',
@@ -8,10 +10,15 @@ import { PublishComponent } from '../publish/publish.component';
   styleUrls: ['./explore.component.css']
 })
 export class ExploreComponent implements OnInit {
+  treasures = Array<TreasureExploreDto>();
 
-  constructor(private dialogService: MatDialog) { }
+  constructor(
+    private dialogService: MatDialog,
+    private api: ExploreApiService,
+    private loading: GlobalLoadingService) { }
 
-  ngOnInit() {
+  async ngOnInit() {
+    await this.loading.wrap(this.api.treasures({}).toPromise());
   }
 
   openPublish() {
