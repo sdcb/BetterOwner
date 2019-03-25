@@ -14,6 +14,8 @@ import { HomeComponent } from './pages/home/home.component';
 import { ExploreComponent } from './pages/explore/explore.component';
 import { PublishComponent } from './pages/publish/publish.component';
 import { FileUploadComponent } from './components/file-upload/file-upload.component';
+import { ExploreItemComponent } from './pages/explore/explore-item/explore-item.component';
+import { TreasureComponent } from './pages/treasure/treasure.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +25,8 @@ import { FileUploadComponent } from './components/file-upload/file-upload.compon
     ExploreComponent,
     PublishComponent,
     FileUploadComponent,
+    ExploreItemComponent,
+    TreasureComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -30,6 +34,7 @@ import { FileUploadComponent } from './components/file-upload/file-upload.compon
     FormsModule,
     RouterModule.forRoot([
       { path: '', redirectTo: 'home', pathMatch: 'full' },
+      { path: 'treasure/:id', component: TreasureComponent },
       { path: 'home', component: HomeComponent },
       { path: 'explore', component: ExploreComponent, },
     ]),

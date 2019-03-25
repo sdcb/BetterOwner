@@ -1,0 +1,7 @@
+<a [routerLink]="['/treasure/' + data.id, data]" fxLayout="column" class="explore-item-container">
+  <img [src]="data.pictureUrl">
+  <div fxLayout="row" fxLayoutAlign="space-between start">
+    <span>{{data.title}}</span>
+    <span>{{data.price | currency: '￥'}}</span>
+  </div>
+</a>

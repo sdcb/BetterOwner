@@ -44,7 +44,7 @@ namespace BetterOwner.Services.TreasureManager
 
         private static string PictureIdToUrl(Guid id)
         {
-            return $"/explore/picture/{id}";
+            return $"/api/explore/picture/{id}";
         }
     }
 }
