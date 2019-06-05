@@ -6,7 +6,7 @@ import { Component, OnInit, ElementRef, ViewChild, Input, Output, EventEmitter }
   styleUrls: ['./file-upload.component.css']
 })
 export class FileUploadComponent implements OnInit {
-  @ViewChild('file')
+  @ViewChild('file', { static: true })
   file: ElementRef<HTMLInputElement>;
 
   limit = new FileLimitations();
