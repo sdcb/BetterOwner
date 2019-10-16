@@ -36,15 +36,15 @@ namespace BetterOwner.Services.Database
         {
             foreach (IMutableEntityType entityType in modelBuilder.Model.GetEntityTypes())
             {
-                string tableName = entityType.Relational().TableName;
+                string tableName = entityType.GetTableName();
                 if (tableName.StartsWith("AspNet"))
                 {
-                    entityType.Relational().TableName = tableName[6..^1];
+                    entityType.SetTableName(tableName[6..^1]);
                 }
                 else
                 {
                     // Delete suffix s in ALL tables
-                    entityType.Relational().TableName = tableName[..^1];
+                    entityType.SetTableName(tableName[..^1]);
                 }
             }
         }
