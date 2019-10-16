@@ -1,4 +1,4 @@
-export const environment = {
+export const version = {
     job: "local",
     buildId: "local",
     rv: "local",
